@@ -23,12 +23,44 @@ public class Persona {
         this.email = email;
     }
 
+    public static Persona factory(String cadena){
+        if(cadena == null){
+            throw new IllegalArgumentException ("No son validos los argumentos");
+        }
+        
+        String[] partes =cadena.split(",");
+
+        if (partes.length !=4){
+            throw new IllegalArgumentException ("No son validos los argumentos");
+
+        }
+
+        try{
+            int edad = Integer.parseInt (partes[2]);
+            return new Persona (partes[0],partes[1],edad,partes[3]);
+        } catch (Exception e){
+            throw new IllegalArgumentException ("No son validos los argumentos");
+        }
+    }
+
     /**
      * Getter de email.
      * @return el email de la persona
      */
     public String getEmail() {
         return email;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getApellido() {
+        return apellidos;
+    }
+
+    public int getEdad() {
+        return edad;
     }
     
 }
